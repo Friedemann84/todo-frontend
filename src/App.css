@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #212428;
+
+}
+
+.allesBox {
+  /* !!! */
+  position: relative;
+  min-height: 100vh;
+  background-color: #323338;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.8rem;
+  background-color: rgb(1, 4, 29);
+
+  & p {
+    color: #DCD6F7;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3.5rem;
+    font-weight: 900;
+    /* letter-spacing: 1px; */
+    margin-bottom: -1.1rem;
+  }
+
+  & a {
+    color: #DCD6F7;
+    font-family: monospace;
+    /* text-underline-offset: 1px; */
+    text-decoration: 1px underline  ;
+  }
+
+  & a:last-of-type {
+    margin-left: 1rem;
+  }
+}
+
+.inputContainer {
+  height: 7rem;
+  background-color: #212428;
+
+  & .innerInputContainer {
+    display: flex;
+    align-items: center;
+  }
+}
+
+input {
+  width: 14rem;
+  margin: 1.7rem;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: sans-serif;
+  border-radius: 20px;
+  background-color: #1F1526;
+  color: white;
+  outline: none;
+  border: 1px solid #B298DC;
+  transition: 1s;
+
+  &:focus {
+    transition: 1s;
+    border: 1px solid #FFCB77;
+  }
+}
+
+.addBtn {
+  border: none;
+  padding: 0.3rem 1.2rem;
+  border-radius: 30px;
+  background-color: #17A398;
+  color: whitesmoke;
+  /* color: #1F1526; */
+  font-size: 1.2rem;
+  font-family: 'Glegoo', serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #17a398cc;
+  }
+
+  &:active {
+    background-color: #106b64;
+  }
+}
+
+button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background-color: #17A398;
+  color: whitesmoke;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #17a398cc;
+  }
+
+  &:active {
+    background-color: #106b64;
+  }
+}
+
+.todoContainer {
+  width: 23.6rem;
+  background-color: #323338;
+  min-height: 12.25rem;
+  padding: 0.2rem 0;
+  margin: 0.5rem 0 0 0.5rem;
+  /* border:  1px solid #ECE5F0; */
+  border:  1px solid #17A398;
+  border-radius: 6px;
+
+  & h1 {
+    font-family: 'Patua One', serif;
+    letter-spacing: 1px;    
+    color: #DCD6F7;
+    margin: 1rem 2.2rem;
+    text-decoration: 1.5px  underline;
+    text-underline-offset: 6px;
+
+    & .todoIcon {
+      text-decoration: 3.5px  underline #323338;
+      text-underline-offset: 5px;
+    }
+  }
+}
+
+.doneContainer {
+  width: 23.6rem;
+  background-color: #323338;
+  min-height: 12.25rem;
+  padding: 0.2rem 0;
+  margin: 0.5rem 0 0 0.5rem;
+  /* border:  1px solid #ECE5F0; */
+  border:  1px solid #17A398;
+  border-radius: 6px;
+  /* position: absolute; */
+
+  & h1 {
+    font-family: 'Patua One', serif;
+    letter-spacing: 1px;    
+    color: #DCD6F7;
+    margin: 1rem 2.2rem;
+    text-decoration: 1.5px  underline;
+    text-underline-offset: 6px;
+
+    & .doneIcon {
+      text-decoration: 3.5px  underline #323338;
+      text-underline-offset: 5px;
+    }
+  }
+}
+
+.todoUL {
+  /* margin-top: 1rem; */
+  
+  & li {
+    box-sizing: content-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    list-style-type: none;
+    background-color: #5f6070;
+    border: 1px solid white;
+    border-radius: 36rem;
+    width: 18rem;
+    padding: 0.6rem 1.2rem;
+    margin: 0.6rem 1.5rem;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: whitesmoke; 
+  }
+
+  /* & li:last-of-type {
+    margin-bottom: 0;
+  } */
+}
+
+.dustUL {
+  margin-bottom: 2.2rem;
+  
+  & li {
+    box-sizing: content-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-decoration: 1px line-through;
+    list-style-type: none;
+    background-color: #494652;
+    border: 1px solid white;
+    border-radius: 36rem;
+    width: 18rem;
+    padding: 0.6rem 1.2rem;
+    margin: 0.6rem 1.5rem;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: whitesmoke; 
+
+    & div {
+      display: flex;
+
+      & .refreshDiv {
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}
+
+.footerContainer {
+  width: 100%;
+  background-color: #FFCB77;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 1rem; */
+  /* position: relative; */
+
+  & p {
+    padding: 0.2rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #1F1526;
+
+    & span {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    & a {
+      text-decoration: none;
+      color: #1F1526;
+    }
+  }
+}
+
+.footerMargin  {
+  width: 100%;
+  /* background-color: #323338; */
+  background-color: red;
+  height: 0.5rem;
+  position: absolute;
+  bottom: 1.5rem;
+}
