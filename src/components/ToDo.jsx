@@ -2,8 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 
 const ToDo = ({ todosArr, setTodosArr, doneTodo, setDoneTodo }) => {
-
+  
   useEffect(() => {
+    console.log(todosArr);
     //! localStorage      
     localStorage.setItem('doneData', JSON.stringify(doneTodo));
     localStorage.setItem('todoData', JSON.stringify(todosArr));
@@ -29,7 +30,7 @@ const ToDo = ({ todosArr, setTodosArr, doneTodo, setDoneTodo }) => {
         <h1>TO-DO&#39;s<span className="todoIcon">&nbsp;  📝</span></h1>
         <ul className="todoUL">
           {todosArr.map((todo, i) => (
-            <li key={i}>{todo}
+            <li key={i}>{todo.content}
               <button onClick={() => doneButtonHandler(i)}>
                 <FontAwesomeIcon icon="fa-solid fa-eye-slash" style={{color: "#FEF9EF",}} />
               </button>

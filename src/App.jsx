@@ -1,48 +1,43 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Done from './components/Done.jsx';
 import Header from './components/Header.jsx';
 import Input from './components/Input.jsx';
-import ToDo from './components/ToDo.jsx';
+import TodoApp from './components/TodoApp.jsx';
 import Footer from './components/Footer.jsx';
 
 function App() {
-
-  useEffect(() => {
-    //TODO -> beide const's bleiben leer ?!?!
-    const lsTodoData = JSON.parse(localStorage.getItem('todoData'));
-    const lsDoneData = JSON.parse(localStorage.getItem('doneData'));
-    console.log('lsTodoData: ', lsTodoData);
-    console.log('lsDoneData: ', lsDoneData);
-
-    if (lsTodoData !== null) {
-      setTodosArr(lsTodoData);
-    }
-
-    if (lsDoneData !== null) {
-      setDoneTodo(lsDoneData);
-    }
-    // theoretisch -> Ausführung nur beim mounten / 1st render
-  }, [])
 
   const [todoInput, setTodoInput] = useState('');
   const [todosArr, setTodosArr] = useState([]);
   const [doneTodo, setDoneTodo] = useState([]);
   
-  // useEffect(() => {}, [doneTodo]);
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const response = await fetch('http://localhost:1984/todos', {
+        method: 'POST',
+        withCredentials: true,
+        headers: {
+          "content-type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({user: "65a7e0d35b7e7cd382e02d88"}) 
+      });
+      const data = await response.json();
+      setTodosArr(data);
+    }
+    fetchTodos();
+  }, []);
   
   return (
     <div className='allesBox'>
       <Header />
-      <Input todosArr={todosArr} setTodosArr={setTodosArr}
-             todoInput={todoInput} setTodoInput={setTodoInput}
+      <Input 
+        todosArr={todosArr} setTodosArr={setTodosArr}
+        todoInput={todoInput} setTodoInput={setTodoInput}    
       />
-      <ToDo todosArr={todosArr} setTodosArr={setTodosArr}
-            doneTodo={doneTodo} setDoneTodo={setDoneTodo} 
-      />
-      <Done doneTodo={doneTodo} setDoneTodo={setDoneTodo}  
-              todosArr={todosArr} setTodosArr={setTodosArr} 
-      />
+
+      <TodoApp />
+
       <Footer />
     </div>
   )
@@ -50,9 +45,11 @@ function App() {
 export default App;
 
 
+//&↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-//TODO -> li's im localStorage speichern / abrufen bei Neustart
-//^↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+//TODO↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+//^ -> li's im localStorage speichern / abrufen bei Neustart
 //*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 //?↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 //~↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

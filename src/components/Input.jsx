@@ -5,18 +5,21 @@ const Input = ( {todosArr, setTodosArr, todoInput, setTodoInput} ) => {
   const onFocus = useRef();
 
   useEffect(() => {
-    //! localStorage
-    // localStorage.setItem('todoData', JSON.stringify(todosArr));
     onFocus.current.focus();
   }, [todosArr, todoInput]);
 
   const inputHandler = (event) => {
-    setTodoInput(event.target.value);
+    const newTodo = {
+      content: event.target.value,
+      status: true,
+      user: ""
+    }
+    setTodoInput(newTodo);
   }; 
 
   const enterHandler = (event) => {
     if(event.key === 'Enter') {
-      if (todoInput.trim() === '') {
+      if (todoInput.content.trim() === '') {
         alert(` 
         (*・‿・)ノ⌒*:･ﾟ✧ 
   
@@ -27,14 +30,13 @@ const Input = ( {todosArr, setTodosArr, todoInput, setTodoInput} ) => {
         todosArr.unshift(todoInput);
         setTodosArr(todosArr);
         setTodoInput('');
-        //! localStorage
-        localStorage.setItem('todoData', JSON.stringify(todosArr));
       }
+     //! BUG -> input-Cursor setzt sich bei Leerzeichen nicht zurück
     }
   };
 
   const buttonHandler = (event) => {
-    if (todoInput.trim() === '') {
+    if (todoInput.content.trim() === '') {
       alert(` 
       (*・‿・)ノ⌒*:･ﾟ✧ 
 
@@ -44,8 +46,9 @@ const Input = ( {todosArr, setTodosArr, todoInput, setTodoInput} ) => {
       event.preventDefault();
       todosArr.unshift(todoInput);
       setTodosArr(todosArr);
-      setTodoInput('');
-      //! localStorage
+      setTodoInput({
+        content: ""
+      });
       localStorage.setItem('todoData', JSON.stringify(todosArr));
     }
   };
@@ -54,7 +57,7 @@ const Input = ( {todosArr, setTodosArr, todoInput, setTodoInput} ) => {
       <div className="innerInputContainer">
         <input 
           type="text" 
-          value={todoInput} 
+          value={todoInput.content} 
           onChange={inputHandler}  
           onKeyDown={enterHandler} 
           ref={onFocus}

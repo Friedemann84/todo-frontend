@@ -11,7 +11,7 @@ const Done = ({ todosArr, setTodosArr, doneTodo, setDoneTodo }) =>  {
     //? fügt sie "DONE & DUSTED" hinzu, re-rendert
     const stillDoneTodos =  doneTodo.filter((todo, index) => i !== index);
     setDoneTodo(stillDoneTodos)
-    //~ find selektiert geklicktes Element und fügt es "TO-DO" hinzu
+    //~ find() selektiert geklicktes Element und fügt es "TO-DO" hinzu
     //~ spliced gleiches Element aus "DONE & DUSTED" raus,re-rendert
     const refreshedTodo =  doneTodo.find((todo, index) => i === index);
     // await todosArr.unshift(refreshedTodo);
